@@ -1,0 +1,9 @@
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('TODO', 'IN_PROGRESS', 'DONE') DEFAULT 'TODO',
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

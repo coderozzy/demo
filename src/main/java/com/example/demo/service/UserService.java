@@ -5,25 +5,13 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
-    public User createUser(String username, String email, String password) {
-        User user = new User(username, email, password);
+    public User registerUser(User user) {
         return userRepository.save(user);
-    }
-
-    public boolean authenticateUser(String email, String password) {
-        Optional<User> user = userRepository.findByEmail(email);
-        return user.isPresent() && user.get().getPassword().equals(password);
     }
 }
